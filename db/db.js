@@ -55,10 +55,36 @@ const contactSchema = new mongoose.Schema({
     }
 });
 
+const bookingSchema = new mongoose.Schema({
+    fullname : {
+        type : String,
+        required : true,
+        maxLength : 80
+    },
+    email : {
+        type : String,
+        required : true
+    },
+    phone : {
+        type : String,
+        required : true
+    },
+    address : {
+        type : String,
+        required : true
+    },
+    createdAt : {
+        type : Date,
+        default : Date.now()
+    }
+});
+
 const User = mongoose.model('User', userSchema);
 const Contact = mongoose.model('Contact', contactSchema);
+const Booking = mongoose.model('Booking', bookingSchema);
 
 module.exports = {
     User,
-    Contact
+    Contact,
+    Booking
 }
