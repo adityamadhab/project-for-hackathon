@@ -1,48 +1,35 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://adityamadhab:Aditya%402024@cluster0.n2i1feo.mongodb.net/healthcare-app');
+mongoose.connect('mongodb+srv://adityamadhabborah:Adi1234@cluster0.ypfx49s.mongodb.net/demo-dataset');
 
 const userSchema = new mongoose.Schema({
-    username : {
+    email : {
         type : String,
         required : true,
         unique : true,
         trim : true,
         maxLength : 80
     },
+    fullname : {
+        type : String,
+        required : true,
+        trim : true,
+        maxLength : 50
+    },
     password : {
         type : String,
         required : true,
         minLength : 8
-    },
-    firstname : {
-        type : String,
-        required : true,
-        trim : true,
-        maxLength : 50
-    },
-    lastname : {
-        type : String,
-        required : true,
-        trim : true,
-        maxLength : 50
     }
 });
 
 const contactSchema = new mongoose.Schema({
-    firstname : {
+    fullname : {
         type : String,
         required : true,
-        trim : true,
-        maxLength : 50
+        trim : true
     },
-    lastname : {
-        type : String,
-        required : true,
-        trim : true,
-        maxLength : 50
-    },
-    email : {
+    subject : {
         type : String,
         required : true,
     }, 

@@ -9,10 +9,9 @@ const { authMiddleware } = require('../middleware/middleware');
 const saltRounds = 10;
 
 const signupValidation = zod.object({
-    username : zod.string().email(),
+    email : zod.string().email(),
+    fullname : zod.string(),
     password : zod.string(),
-    firstname : zod.string(),
-    lastname : zod.string()
 });
 
 const signinValidation = zod.object({
@@ -30,7 +29,7 @@ router.post('/signup', async (req,res) => {
     }
 
     const existingUser = await User.findOne({
-        username : req.body.username
+        email : req.body.email
     });
 
     if(existingUser) {
@@ -42,10 +41,9 @@ router.post('/signup', async (req,res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     const user = await User.create({
-        username : req.body.username,
+        email : req.body.email,
+        fullname : req.body.fullname,
         password : hashedPassword,
-        firstname : req.body.firstname,
-        lastname : req.body.lastname
     });
 
     const userId = user._id;
